@@ -1,60 +1,4 @@
-<html lang = "en">
-
-<head>
-    <meta charset = "UTF-8" />
-    <title>Leaflet Timeline Slider</title>
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
-
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
-    integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
-    crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
-    integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
-    crossorigin=""></script>
-
-    <script src="src/leaflet-timeline-slider.js"></script>
-    
-</head>
-    <body>
-        <div id="mapid" style="height: 600px;">
-        </div>
-
-
-        <script type="text/javascript">
-            var eventPin = L.icon({
-                                iconSize: [70,70],
-                                //iconAnchor: [22,45],
-                                //popupAnchor: [1, -24],
-                                iconUrl: './src/idea.png'
-                                });
-
-            var trainPin = L.icon({
-                                iconSize: [45,45],
-                                //iconAnchor: [22,45],
-                                //popupAnchor: [1, -24],
-                                iconUrl: './src/train.png'
-                                });
-
-            var minePin = L.icon({
-                                iconSize: [35,35],
-                                //iconAnchor: [22,45],
-                                //popupAnchor: [1, -24],
-                                iconUrl: './src/mining.png'
-                                });
-
-            var normalPin = L.icon({
-                                iconSize: [35,35],
-                                //iconAnchor: [22,45],
-                                //popupAnchor: [1, -24],
-                                iconUrl: './src/close.png'
-                                });                    
-
-            data = {"type": "FeatureCollection",
-                        "features":
-                        [
+[
     {
         "type": "Feature",
         "geometry": {
@@ -2500,7 +2444,7 @@
                 "2019"
             ],
             "content": "<h2> \u5927\u83ef\u8eca\u7ad9 <h2> <p> 1956\u5e74\uff1a\u8a2d\u7ad9\uff0c\u4e26\u6307\u5b9a\u7531\u4e09\u8c82\u5dba\u7ad9\u7ba1\u7406\u3002<p> <p> 1989\u5e74\uff1a\u6539\u70ba\u65e5\u9593\u53ea\u6d3e\u4e00\u540d\u7ad9\u54e1\u8fa6\u7406\u552e\u7968\u696d\u52d9\uff0c\u800c\u5176\u4ed6\u696d\u52d9\u4e00\u6982\u4e0d\u8fa6\u7406\uff0c\u9022\u7ad9\u54e1\u4f11\u5047\u6642\u5247\u6bd4\u7167\u62db\u547c\u7ad9\u8fa6\u7406\u3002<p>  <p> 1994\u5e74\uff1a\u7531\u7c21\u6613\u7ad9\u964d\u70ba\u62db\u547c\u7ad9\u3002<p> <p> 2001\u5e74\uff1a\u7ba1\u7406\u7ad9\u7531\u4e09\u8c82\u5dba\u7ad9\u6539\u70ba\u745e\u82b3\u7ad9\u3002<p>",
-            "icon": trainPin
+            "icon": eventPin
         }
     },
     {
@@ -3350,95 +3294,3 @@
         }
     }
 ]
-}
-
-                    /*fetch("./src/output.json")
-                    .then(response => {
-                    return response.json();
-                    })
-                    .then(jsondata => console.log(jsondata));*/
-                    
-            var mymap = L.map('mapid');
-
-            
-
-                                
-
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(mymap);
-            
-            function createMarker(feature, latlng) {
-                return L.marker(latlng, {icon: bible});
-            }
-
-            getDataAddMarkers = function( {label, value, map, exclamation} ) {
-                map.eachLayer(function (layer) {
-                        if (layer instanceof L.Marker) {
-                            map.removeLayer(layer);
-                        }
-                });
-
-                filteredData = data.features.filter(function (i, n) {
-                    //console.log(i.properties.title[0], i.properties.title[1],label,(parseInt(i.properties.title[0])<=parseInt(label)),parseInt(i.properties.title[1] >= parseInt(label)));
-                    if( (parseInt(i.properties.title[0])<=parseInt(label)) && (parseInt(i.properties.title[1]) >= parseInt(label)) ){
-                        return true;
-                    } 
-
-                     if(i.properties.title.indexOf(label) >= 0){
-                        return true;
-                     }
-                    });
-                //console.log(filteredData)
-                
-                /*var bible = L.Icon({
-                    iconSize: [50, 50],
-                    iconURL: "https://leafletjs.com/examples/geojson/baseball-marker.png"
-                })*/
-                var geojsonMarkerOptions = {
-                                                radius: 8,
-                                                fillColor: "red",
-                                                color: "#000",
-                                                weight: 1,
-                                                opacity: 1,
-                                                fillOpacity: 0.8
-                                            };
-
-                var markerArray = [];
-                L.geoJson(filteredData, {
-                    onEachFeature: function onEachFeature(feature, layer) {
-                        content = `${feature.properties.content} <br>`
-                        var popup = L.popup().setContent(content);
-                        
-                        layer.bindPopup(popup);
-                        
-                        markerArray.push(layer);
-                    },
-                    pointToLayer: function(feature, latlng){
-                        return  L.marker(latlng, {icon: feature.properties.icon});
-                    }
-                }).addTo(map);
-                
-                var markerGroup = L.featureGroup(markerArray);
-                map.fitBounds(markerGroup.getBounds());
-                //map.setView([25.03461,121.7638], 12);
-            };
-
-            var timeItems = [];
-            for(var i=1918; i<2020; i++){
-                timeItems.push(i.toString());
-            }
-
-            L.control.timelineSlider({
-                timelineItems: [1918, 1919, 1921, 1922, 1923,1926,1927,1928,1929,1935,1937,1938,1939,1940,1943,1946,1947,1948,1949,1951,1953,1954,1955,1956,1957,1958,1959,1962,1963,1965,1966,1967,1968,1969,1970,1972,1973,1975,1979,1980,1981,1985,1987,1990,1991,1992,1994,1997,1998,2000,2001,2019], 
-                changeMap: getDataAddMarkers,
-                extraChangeMapParams: {exclamation: "Hello World!"},
-                labelWidth: "28px",
-                betweenLabelAndRangeSpace: "20px",
-                labelFontSize: "4px",
-                topBgPadding: "20px"})
-            .addTo(mymap);             
-        </script>
-    </body>
-
-</html>
