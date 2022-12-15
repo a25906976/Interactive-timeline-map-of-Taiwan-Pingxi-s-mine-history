@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+}
+
+#mapid {
+  height: 100vh;
+  z-index: 0;
+}
+
+.charts {
+  position: absolute;
+  bottom: 120px;
+  left: 40px;
+  z-index: 1;
+  padding: 0px;
+  cursor: pointer;
+  padding: auto;
+}
+
+.notShow {
+  display: none;
+}
+
+.chart {
+  margin-bottom: 14px;
+}
+
+.image {
+  border-radius: 14px;
+  width: 280px;
+}
+
+.button {
+  position: absolute;
+  bottom: 90px;
+  left: 40px;
+  width: 60px;
+  height: 40px;
+  z-index: 1;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 4px;
+}
