@@ -19,9 +19,26 @@
       crossorigin=""
     ></script>
     <script src="src/leaflet-timeline-slider.js"></script>
+    <link rel="stylesheet" href="/src/style.css" />
+    <script src="src/chart.js" defer></script>
   </head>
   <body>
-    <div id="mapid" style="height: 100vh"></div>
+    <div id="mapid"></div>
+    <div class="charts">
+      <div class="chart">
+        <img class="image" src="src/years.png" />
+      </div>
+      <div class="chart">
+        <img class="image" src="src/area.png" />
+      </div>
+      <div class="chart">
+        <img class="image" src="src/employee.png" />
+      </div>
+      <div class="chart">
+        <img class="image" src="src/production.png" />
+      </div>
+    </div>
+    <button class="button">圖表</button>
     <script src="src/map.js"></script>
   </body>
 </html>
