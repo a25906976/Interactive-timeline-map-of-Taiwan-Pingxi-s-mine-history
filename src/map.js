@@ -2851,7 +2851,7 @@ L.control
     extraChangeMapParams: { exclamation: "Hello World!" },
     labelWidth: "28px",
     betweenLabelAndRangeSpace: "20px",
-    labelFontSize: "4px",
+    labelFontSize: "14px",
     topBgPadding: "20px",
   })
   .addTo(mymap);
